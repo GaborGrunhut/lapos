@@ -9,21 +9,24 @@
 */
 
 const dolgozoTorzs = document.querySelector("#dolgozoTorzs");
+const nameInput = document.querySelector("#name");
+const cityInput = document.querySelector("#city");
+const salaryInput = document.querySelector("#salary");
+const addButton = document.querySelector("#addButton");
 
 const dolgozoLista = [
-    {name: "Pali", city: "Szolnok", salary: 385},
-    {name: "Kati", city: "Szolnok", salary: 330},
-    {name: "Mari", city: "Szeged", salary: 367},
-    {name: "Dani", city: "Pécs", salary: 285},
-    {name: "Laci", city: "Szolnok", salary: 393},
-    {name: "Karcsi", city: "Budapest", salary: 295},
-    {name: "Géza", city: "Miskolc", salary: 380}
+    { name: "Pali", city: "Szolnok", salary: 385 },
+    { name: "Kait", city: "Szolnok", salary: 320 },
+    { name: "Mari", city: "Szeged", salary: 395 },
+    { name: "Dani", city: "Szeged", salary: 401 },
+    { name: "Atti", city: "Miskolc", salary: 372 },
+    { name: "Pisti", city: "Szolnok", salary: 357 },
+    { name: "Géza", city: "Pécs", salary: 325 }
 ];
 
-/* táblázat bejárása a "forEach" utasítással + lambda "üres" függvény */
-
+function loadEmployes() {
 dolgozoLista.forEach((dolgozo) => {
-    console.log (dolgozo.name);
+    console.log(dolgozo.name);
     let tr = document.createElement('tr');
     let tdName = document.createElement('td');
     let tdCity = document.createElement('td');
@@ -36,3 +39,30 @@ dolgozoLista.forEach((dolgozo) => {
     tr.append(tdCity);
     tr.append(tdSalary);
 });
+}
+
+loadEmployes();
+
+addButton.addEventListener('click', () => {
+    console.log('működik')
+    addEmployee();
+});
+
+function addEmployee() {
+    dolgozo = {
+        name: nameInput.value,
+        city: cityInput.value,
+        salary: salaryInput.value
+    };
+    dolgozoLista.push(dolgozo);
+    console.log(dolgozoLista);
+    clearFields();
+    dolgozoTorzs.textContent = "";
+    loadEmployes();
+};
+
+function clearFields() {
+    nameInput.value = "";
+    cityInput.value = "";
+    salaryInput.value = "";
+}
